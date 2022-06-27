@@ -10,7 +10,7 @@ const Meals = (props) => {
           Hatid App Promo in <span className="font-medium">Manila</span>
         </h1>
 
-        <MealsList />
+        <MealsList onAddCartItems={props.onAddCartItems}/>
       </div>
     </section>
   );

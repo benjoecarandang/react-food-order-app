@@ -7,11 +7,11 @@ const onCartClick = () => {
 
 const CartButton = (props) => {
   return (
-    <div className="flex items-center">
-      <StyleButton onClick={onCartClick}>
+    <div className="flex items-center" onClick={props.onShowCart}>
+      <StyleButton>
         My Cart
         <span className="text-xs rounded-full bg-theme-orange px-2 py-1 w-32 relative left-2 bg-orange">
-          4
+          {props.itemCount}
         </span>
       </StyleButton>
     </div>

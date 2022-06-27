@@ -15,14 +15,12 @@ const Header = (props) => {
         <Container>
           <Logo />
           <Nav />
-          <CartButton />
+          <CartButton onShowCart={props.onShowCart} itemCount={props.itemCount}/>
         </Container>
       </StyledHeader>
     </Fragment>
   );
 };
-
-
 
 const StyledHeader = styled.header`
     ${

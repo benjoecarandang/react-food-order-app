@@ -1,14 +1,62 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './App.css'
 import Hero from './images/hero.webp'
 import Header from './components/Layouts/Header/Header'
 import Meals from './components/Layouts/Meals/Meals'
-
+import Cart from './components/Layouts/Cart/Cart'
 
 function App() {
+  const [cartIsShow, setCartIsShown] = useState(false)
+
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 1,
+      name: 'Kinben - Maceda',
+      description: 'Here are the biggest enterprise technology.',
+      price: 129,
+      tags: 'Popular',
+      location: 'Manila',
+      discount: '10',
+    }
+  ])
+
+  console.log(cartItems.length);
+
+  const showCartHandler = () => {
+    setCartIsShown(true)
+  }
+
+  const hideCartHandler = () => {
+    setCartIsShown(false)
+  }
+
+  const addToCart = () => {
+    setCartItems(prevCartItems => {
+      const newArray = prevCartItems;
+
+      newArray.push({
+        id: Math.random() * 100,
+        name: 'Kinben - Maceda',
+        description: 'Here are the biggest enterprise technology.',
+        price: 129,
+        tags: 'Popular',
+        location: 'Manila',
+        discount: '10'
+      })
+
+      return newArray;
+    })
+  }
+
   return (
     <div className="page-wrapper">
-        <Header />
+        <Cart
+          items={cartItems}
+          isShown={cartIsShow} 
+          onCloseCart={hideCartHandler}
+        />
+
+        <Header onShowCart={showCartHandler} itemCount={cartItems.length}/>
 
         <section className={`hero h-96 bg-contain bg-no-repeat bg-right-top py-10`} style={{backgroundImage: `url(${Hero})`}}>
             <div className="h-full container mx-auto">
@@ -29,7 +77,7 @@ function App() {
             </div>
         </section>
 
-        <Meals />
+        <Meals items={cartItems} onAddCartItems={addToCart}/>
     </div>
   );
 }
