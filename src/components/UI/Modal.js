@@ -1,46 +1,60 @@
-import React from "react";
+import React, { Fragment } from "react";
+import ReactDOM from "react-dom";
 import tw, { styled } from "twin.macro";
 
-const Modal = (props) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
+
+const Backdrop = (props) => {
+  return <StyledBackdrop />;
+};
+
+const ModalOverlay = (props) => {
   return (
-    <>
-      {props.isShown && (
-        <>
-          <StyledModal onClick={props.onClose}>
-            <div className="relative w-8/12 my-6 mx-auto max-w-3xl">
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-2xl font-l">Cart Items</h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-regular outline-none focus:outline-none"
-                    onClick={props.onClose}
-                  >
-                    <span className="bg-transparent text-black text-2xl block outline-none focus:outline-none">
-                      x
-                    </span>
-                  </button>
-                </div>
+    <StyledModal>
+      <div className="relative w-10/12 my-6 mx-auto max-w-5xl">
+        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-100 outline-none focus:outline-none">
+          <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+            {props.title && <h3 className="text-2xl font-l">{props.title}</h3>}
+            <button
+              className="text-sm text-black float-right ml-auto p-2"
+              onClick={props.onCartHide}
+            >
+              <FontAwesomeIcon icon={faX}></FontAwesomeIcon>
+            </button>
+          </div>
 
-                <div className="relative p-6 flex-auto">
-                  {props.children}
-                </div>
+          {props.children}
 
-                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                  <StyleButton
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={props.onClose}
-                  >
-                    Close
-                  </StyleButton>
-                </div>
-              </div>
+          {props.enableClose && (
+            <div className="flex items-center justify-end p-5 border-t border-solid border-slate-200 rounded-b">
+              <StyledButton
+                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={props.onCartHide}
+              >
+                Close
+              </StyledButton>
             </div>
-          </StyledModal>
-          <StyledBackdrop></StyledBackdrop>
-        </>
+          )}
+        </div>
+      </div>
+    </StyledModal>
+  );
+};
+
+const Modal = (props) => {
+  const portalElement = document.getElementById("modal-root");
+  return (
+    <Fragment>
+      {ReactDOM.createPortal(<Backdrop />, portalElement)}
+      {ReactDOM.createPortal(
+        <ModalOverlay title={props.title} onCartHide={props.onCartHide}>
+          {props.children}
+        </ModalOverlay>,
+        portalElement
       )}
-    </>
+    </Fragment>
   );
 };
 
@@ -54,9 +68,9 @@ const StyledBackdrop = styled.div(
   tw`
     opacity-25 fixed inset-0 z-40 bg-black
   `
-)
+);
 
-const StyleButton = tw.button`
+const StyledButton = tw.button`
     text-white
     bg-gradient-to-br
     from-pink-500

@@ -1,6 +1,4 @@
-import React, { Fragment } from "react"
-
-
+import React, { Fragment, useContext } from "react"
 import Container from "../../UI/Container"
 import Logo from "./Logo"
 import Nav from "./Navigation/Nav"
@@ -15,7 +13,7 @@ const Header = (props) => {
         <Container>
           <Logo />
           <Nav />
-          <CartButton onShowCart={props.onShowCart} itemCount={props.itemCount}/>
+          <CartButton onCartOpen={props.onCartOpen}/>
         </Container>
       </StyledHeader>
     </Fragment>

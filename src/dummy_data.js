@@ -12,7 +12,8 @@ const DUMMY_DATA = [
         tags: 'Popular',
         location: 'Manila',
         discount: '10',
-        imageSrc: Ricemeal
+        imageSrc: Ricemeal,
+        amount: 1
     },
     {
         id: 2,
@@ -22,7 +23,8 @@ const DUMMY_DATA = [
         tags: null,
         location: 'Manila',
         discount: '10',
-        imageSrc: Palayok
+        imageSrc: Palayok,
+        amount: 1
     },
     {
         id: 3,
@@ -32,7 +34,8 @@ const DUMMY_DATA = [
         tags: null,
         location: 'Manila',
         discount: '10',
-        imageSrc: Burger
+        imageSrc: Burger,
+        amount: 1
     },
     {
         id: 4,
@@ -42,7 +45,8 @@ const DUMMY_DATA = [
         tags: null,
         location: 'Manila',
         discount: '10',
-        imageSrc: Drinks
+        imageSrc: Drinks,
+        amount: 1
     }
 ]
 

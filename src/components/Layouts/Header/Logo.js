@@ -6,7 +6,7 @@ import HeaderLogo from "../../../images/logo.png"
 const Logo = props => {
     return (
         <StyledLogo>
-            <img src={HeaderLogo} />
+            <img src={HeaderLogo} alt="Logo"/>
         </StyledLogo>
     )
 } 
