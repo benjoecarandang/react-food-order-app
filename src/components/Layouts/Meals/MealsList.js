@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import tw, { styled } from "twin.macro";
 import MealItem from "./MealItem";
 
-import DUMMY_DATA from "../../../dummy_data";
-
 const MealsList = (props) => {
   const [meals, setMeals] = useState([]);
   const [httpError, setHttpError] = useState();
@@ -29,7 +27,7 @@ const MealsList = (props) => {
           description: data[key].description,
           price: data[key].price,
           tags: data[key].tags,
-          image_src:"",
+          image_src: data[key].image_src,
         });
       }
 

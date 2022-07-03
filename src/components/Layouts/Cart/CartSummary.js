@@ -19,7 +19,7 @@ const CartSummary = (props) => {
   const cartItems = (
     <ul>
       {cartCtx.items.map((item) => {
-        const lineTotalAmount = item.price * item.amount;
+        const lineTotalAmount = (item.price * item.amount).toFixed(2);
         return (
           <CartItem
             name={item.name}
