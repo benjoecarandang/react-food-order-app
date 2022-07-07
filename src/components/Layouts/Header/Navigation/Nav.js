@@ -1,15 +1,21 @@
 import React from "react";
 import tw, { styled } from "twin.macro";
+import { NavLink } from "react-router-dom"
 
 const Nav = (props) => {
   return (
     <StyledNav>
-        <StyledUnorderLists>
-            <StyledListItem>Home</StyledListItem>
-            <StyledListItem>Categories</StyledListItem>
-            <StyledListItem>Contact Us</StyledListItem>
-            <StyledListItem>About Us</StyledListItem>
-        </StyledUnorderLists>
+      <StyledUnorderLists>
+        <StyledListItem>
+          <NavLink to="/">Home</NavLink>
+        </StyledListItem>
+        <StyledListItem>
+          <NavLink to="/restaurants">Restaurants</NavLink>
+        </StyledListItem>
+        <StyledListItem>
+          <NavLink to="/login">Login</NavLink>
+        </StyledListItem>
+      </StyledUnorderLists>
     </StyledNav>
   );
 };
@@ -20,15 +26,14 @@ const StyledNav = styled.header(
     mr-10
     my-auto
   `
-)
+);
 
 const StyledUnorderLists = styled.ul(
   tw`
     flex
     items-center
   `
-)
-
+);
 
 const StyledListItem = styled.li(
   tw`
@@ -38,6 +43,6 @@ const StyledListItem = styled.li(
     hover:text-gray-800
     mx-4 cursor-pointer
   `
-)
+);
 
 export default Nav;

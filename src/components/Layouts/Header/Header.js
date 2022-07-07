@@ -10,7 +10,7 @@ const Header = (props) => {
   return (
     <Fragment>
       <StyledHeader>
-        <Container>
+        <Container className="flex">
           <Logo />
           <Nav />
           <CartButton onCartOpen={props.onCartOpen}/>

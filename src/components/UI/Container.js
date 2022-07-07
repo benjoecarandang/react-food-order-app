@@ -10,7 +10,7 @@ const Container = props => {
 const StyledContainer = styled.div(
     tw`
     container
-    flex
+    px-5
     mx-auto`
 )
 

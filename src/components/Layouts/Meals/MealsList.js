@@ -71,6 +71,7 @@ const StyledGrid = styled.div(
     auto-rows-auto
     gap-10
     justify-center
+    w-full
     `
 );
 
