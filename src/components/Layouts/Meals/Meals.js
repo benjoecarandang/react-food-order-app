@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
-import tw, { styled } from "twin.macro";
+import React from "react";
+import Section from "../../UI/Section";
 import Container from "../../UI/Container";
 import MealsList from "./MealsList";
 
 const Meals = (props) => {
   return (
-    <section className="food-list py-10">
+    <Section>
       <Container>
         <h1 className="text-3xl font-light mb-5 leading-15">
           Hatid App Promo in <span className="font-medium">Manila</span>
@@ -13,7 +13,7 @@ const Meals = (props) => {
 
         <MealsList />
       </Container>
-    </section>
+    </Section>
   );
 };
 

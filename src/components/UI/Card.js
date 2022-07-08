@@ -1,47 +1,61 @@
+import tw, { styled } from "twin.macro";
+
 const Card = (props) => {
-  return (
-    <div className="p-10">
-      <div className=" w-full lg:max-w-full lg:flex">
-        <div
-          className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-          title="Mountain"
-        ></div>
-        <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-          <div className="mb-8">
-            <p className="text-sm text-gray-600 flex items-center">
-              <svg
-                className="fill-current text-gray-500 w-3 h-3 mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-              </svg>
-              Members only
-            </p>
-            <div className="text-gray-900 font-bold text-xl mb-2">
-              Best Mountain Trails 2020
-            </div>
-            <p className="text-gray-700 text-base">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptatibus quia, Nonea! Maiores et perferendis eaque,
-              exercitationem praesentium nihil.
-            </p>
-          </div>
-          <div className="flex items-center">
-            <img
-              className="w-10 h-10 rounded-full mr-4"
-              src="/ben.png"
-              alt="Avatar of Writer"
-            />
-            <div className="text-sm">
-              <p className="text-gray-900 leading-none">John Smith</p>
-              <p className="text-gray-600">Aug 18</p>
-            </div>
-          </div>
+  const image = props.imageSrc && (
+    <a href="">
+      <img className="rounded-t-lg" src={props.imageSrc} alt="" />
+
+      {props.tags && (
+        <div>
+          <StyledTag text={props.tags}>{props.tags}</StyledTag>
+          <StyledRibbonTail text={props.tags} className="-z-10"></StyledRibbonTail>
         </div>
-      </div>
+      )}
+    </a>
+  );
+
+  const title = props.title && (
+    <a href="#">
+      <h5 className="mb-2 text-2xl font-regular tracking-tight text-gray-900 dark:text-white">
+        {props.title}
+      </h5>
+    </a>
+  );
+
+  const description = props.description && (
+    <p className="mb-5 font-normal text-gray-700 dark:text-gray-400">
+      {props.description}
+    </p>
+  );
+
+  const details = (props.title || props.description) && (
+    <div className="flex flex-col h-full p-5">
+      {title}
+      {description}
     </div>
   );
+
+  return (
+    <StyledCard className={props.className}>
+      {image}
+      {details}
+      {props.children}
+    </StyledCard>
+  );
 };
+
+const StyledCard = styled.div(
+  tw`max-w-sm relative flex flex-col rounded-xl border shadow-sm bg-white  border-gray-200 dark:bg-gray-800 dark:border-gray-700`
+);
+
+const StyledTag = styled.div(({ text }) => [
+  tw`absolute bg-theme-green text-xs font-medium py-1 px-3 text-white top-4 -left-1 rounded-t-md rounded-br-md`,
+  text === "Featured" ? tw`bg-theme-green` : tw`bg-theme-orange`,
+]);
+
+const StyledRibbonTail = styled.div(({ text }) => [
+  tw`absolute text-xs border-l-4 border-t-4 !border-l-transparent font-medium p-1 text-white top-10 -left-1`,
+  text === "Featured" ? tw`border-theme-green` : tw`border-theme-orange`,
+]);
 
 export default Card;

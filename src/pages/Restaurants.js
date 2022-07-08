@@ -5,7 +5,6 @@ import Card from "../components/UI/Card";
 const Restaurants = (props) => {
   return (
     <Fragment>
-      <Card />
       <Meals />
     </Fragment>
   );

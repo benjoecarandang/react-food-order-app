@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import tw, { styled } from "twin.macro";
+import GridContainer from "../../UI/GridContainer";
 import MealItem from "./MealItem";
 
 const MealsList = (props) => {
@@ -19,6 +19,8 @@ const MealsList = (props) => {
       const data = await response.json();
 
       let mealsArray = [];
+
+      console.log(data);
 
       for (const key in data) {
         mealsArray.push({
@@ -48,7 +50,7 @@ const MealsList = (props) => {
         name={meal.name}
         price={price}
         amount={meal.amount}
-        tag={meal.tags}
+        tags={meal.tags}
         description={meal.description}
         imageSrc={meal.image_src}
       />
@@ -59,20 +61,7 @@ const MealsList = (props) => {
     return httpError;
   }
 
-  return <StyledGrid>{mealsElement}</StyledGrid>;
+  return <GridContainer>{mealsElement}</GridContainer>;
 };
-
-const StyledGrid = styled.div(
-  tw`
-    grid
-    grid-cols-1
-    md:grid-cols-2
-    lg:grid-cols-4
-    auto-rows-auto
-    gap-10
-    justify-center
-    w-full
-    `
-);
 
 export default MealsList;

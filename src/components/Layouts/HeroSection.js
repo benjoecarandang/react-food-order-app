@@ -4,14 +4,12 @@ import Hero from "./../../images/hero.webp";
 
 const HeroSection = (props) => {
   return (
-    <Section className="bg-contain" backgroundImage={Hero}>
+    <Section className="bg-contain bg-right bg-no-repeat" backgroundImage={Hero}>
       <Container>
         <div className="h-full container mx-auto">
           <div className="h-full flex items-start justify-center flex-col">
             <h1 className="text-4xl font-light w-6/12 mb-5 leading-15">
-              Food and Grocery Delivery from{" "}
-              <span className="font-medium">Manila’s</span> Best Restaurants and
-              Shops
+              Food and Grocery Delivery from <span className="font-medium">Manila’s</span> Best Restaurants and Shops
             </h1>
 
             <p className="font-light mb-10">

@@ -4,7 +4,6 @@ const Section = (props) => {
   return (
     <StyledSection
       className={props.className}
-			customClasses={props.className}
       style={{ backgroundImage: `url(${props.backgroundImage})` }}
     >
       {props.children}
@@ -13,8 +12,7 @@ const Section = (props) => {
 };
 
 const StyledSection = styled.section(({ customClasses }) => [
-	tw`py-20 bg-no-repeat bg-cover bg-center`,
-	`${customClasses}`
+	tw`py-20`
 ]);
 
 export default Section;
