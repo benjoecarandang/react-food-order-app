@@ -8,21 +8,15 @@ import CartProvider from "./store/CartProvider";
 import Restaurants from "./pages/Restaurants";
 import "./App.css";
 
+import { useSelector } from 'react-redux'
+
 function App() {
-  const [isModalShown, setIsModalShown] = useState(false);
-
-  const showCartHandler = () => {
-    setIsModalShown(true);
-  };
-
-  const hideCartHandler = () => {
-    setIsModalShown(false);
-  };
+  const isCartVisible = useSelector(state => state.ui.isCartVisible);
 
   return (
     <CartProvider>
-      {isModalShown && <Cart onCartHide={hideCartHandler} />}
-      <Header onCartOpen={showCartHandler} />
+      {isCartVisible && <Cart />}
+      <Header />
 
       <Routes>
         <Route

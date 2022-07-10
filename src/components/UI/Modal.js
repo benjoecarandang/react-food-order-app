@@ -18,7 +18,7 @@ const ModalOverlay = (props) => {
             {props.title && <h3 className="text-2xl font-l">{props.title}</h3>}
             <button
               className="text-sm text-black float-right ml-auto p-2"
-              onClick={props.onCartHide}
+              onClick={props.actionHandler}
             >
               <FontAwesomeIcon icon={faX}></FontAwesomeIcon>
             </button>
@@ -31,7 +31,7 @@ const ModalOverlay = (props) => {
               <StyledButton
                 className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                onClick={props.onCartHide}
+                onClick={props.actionHandler}
               >
                 Close
               </StyledButton>
@@ -49,7 +49,7 @@ const Modal = (props) => {
     <Fragment>
       {ReactDOM.createPortal(<Backdrop />, portalElement)}
       {ReactDOM.createPortal(
-        <ModalOverlay title={props.title} onCartHide={props.onCartHide}>
+        <ModalOverlay title={props.title} actionHandler={props.actionHandler}>
           {props.children}
         </ModalOverlay>,
         portalElement

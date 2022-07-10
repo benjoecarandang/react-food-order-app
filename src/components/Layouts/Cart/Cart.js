@@ -3,10 +3,18 @@ import tw, { styled } from "twin.macro";
 import Modal from "../../UI/Modal";
 import CartSummary from "./CartSummary";
 import CartForm from "./CartForm";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../../store/ui-slice";
 
 const Cart = (props) => {
+  const dispatch = useDispatch();
+
+  const cartToggleHandler = () => {
+    dispatch(uiActions.toggle());
+  }
+
   return (
-    <Modal title="My Cart" onCartHide={props.onCartHide}>
+    <Modal title="My Cart" actionHandler={cartToggleHandler}>
       <StyledCheckoutWrapper>
         <CartForm></CartForm>
         <CartSummary></CartSummary>

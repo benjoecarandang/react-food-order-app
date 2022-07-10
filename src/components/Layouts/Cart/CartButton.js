@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import CartContext from "../../../store/cart-context";
 import tw, { styled } from "twin.macro";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../../store/ui-slice";
 
 const CartButton = (props) => {
+  const dispatch = useDispatch();
   const cartCtx = useContext(CartContext);
   const [isButtonHighlighted, setIsButtonHighlighted] = useState(false);
 
@@ -24,8 +27,12 @@ const CartButton = (props) => {
     }, 300);
   }, [items]);
 
+  const toggleCartHandler = () => {
+    dispatch(uiActions.toggle());
+  }
+
   return (
-    <div className="flex items-center" onClick={props.onCartOpen}>
+    <div className="flex items-center" onClick={toggleCartHandler}>
       <StyleButton isButtonHighlighted={isButtonHighlighted}>
         My Cart
         <span className="text-xs rounded-full bg-theme-orange px-2 py-1 w-32 relative left-2 bg-orange">
