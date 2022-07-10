@@ -6,7 +6,7 @@ const Input = (props) => {
     <Fragment>
       <label
         className="block tracking-wide text-sm font-medium mb-2 leading-3"
-        for={props.options.id}
+        htmlFor={props.options.id}
       >
         {props.options.label}
       </label>

@@ -1,18 +1,18 @@
 import React, { Fragment, useContext } from "react";
 import Input from "../../UI/Input";
 import tw, { styled } from "twin.macro";
-import CartContext from "../../../store/cart-context";
+import { useSelector } from "react-redux";
 
 const CartForm = (props) => {
-  const cartCtx = useContext(CartContext);
-  const cartItemsLength = cartCtx.items.length;
+  const cartItems = useSelector(state => state.cart.items);
+  const cartItemsLength = cartItems.length;
 
   return (
     <Fragment>
       {cartItemsLength > 0 && (
         <div className="pr-5">
-          <div class="text-xl font-semibold mb-5">Contact Information</div>
-          <hr className="pb-7"></hr>
+          {/* <div className="text-xl font-semibold mb-5">Contact Information</div>
+          <hr className="pb-7"></hr> */}
           <form className="w-full max-w-lg">
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-1/2 px-3">

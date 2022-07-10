@@ -1,23 +1,31 @@
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import tw, { styled } from "twin.macro";
 import CartContext from "../../../store/cart-context";
 import Card from "../../UI/Card";
 
+import { useDispatch } from "react-redux/es/exports";
+import { cartActions } from "../../../store/cart-slice";
+
 const MealItem = (props) => {
   const cartCtx = useContext(CartContext);
+  const dispatch = useDispatch();
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    cartCtx.addItem({
-      id: props.id,
-      name: props.name,
-      amount: 1,
-      price: props.price,
-      imageSrc: props.imageSrc,
-    });
+    dispatch(
+      cartActions.addItem({
+        item: {
+          id: props.id,
+          name: props.name,
+          amount: 1,
+          price: props.price,
+          imageSrc: props.imageSrc,
+        },
+        totalAmount: 1,
+      })
+    );
   };
 
   return (

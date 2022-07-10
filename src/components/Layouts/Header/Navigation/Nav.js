@@ -20,7 +20,7 @@ const Nav = (props) => {
   );
 };
 
-const StyledNav = styled.header(
+const StyledNav = styled.nav(
   tw`
     ml-auto
     mr-10

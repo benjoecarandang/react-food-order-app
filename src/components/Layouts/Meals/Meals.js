@@ -10,7 +10,6 @@ const Meals = (props) => {
         <h1 className="text-3xl font-light mb-5 leading-15">
           Hatid App Promo in <span className="font-medium">Manila</span>
         </h1>
-
         <MealsList />
       </Container>
     </Section>

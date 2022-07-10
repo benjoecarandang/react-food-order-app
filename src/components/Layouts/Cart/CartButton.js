@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import CartContext from "../../../store/cart-context";
 import tw, { styled } from "twin.macro";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../../store/ui-slice";
+import { useSelector } from "react-redux";
 
 const CartButton = (props) => {
   const dispatch = useDispatch();
-  const cartCtx = useContext(CartContext);
+  
   const [isButtonHighlighted, setIsButtonHighlighted] = useState(false);
-
-  const { items } = cartCtx;
+  
+  const { items } = useSelector(state=>state.cart);
 
   const numberOfCartItems = items.reduce((curNumber, item) => {
     return curNumber + item.amount;

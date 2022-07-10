@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import GridContainer from "../../UI/GridContainer";
 import MealItem from "./MealItem";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux/es/exports";
+import { mealActions } from "../../../store/meal-slice";
 
 const MealsList = (props) => {
-  const [meals, setMeals] = useState([]);
+  const meals = useSelector((state) => state.meals.items);
+  const dispatch = useDispatch();
+
   const [httpError, setHttpError] = useState();
 
   useEffect(() => {
@@ -20,8 +25,6 @@ const MealsList = (props) => {
 
       let mealsArray = [];
 
-      console.log(data);
-
       for (const key in data) {
         mealsArray.push({
           id: key,
@@ -33,13 +36,14 @@ const MealsList = (props) => {
         });
       }
 
-      setMeals(mealsArray);
-    }
+      dispatch(mealActions.replaceMealItem({ meals: mealsArray }));
+    };
 
     getMeals().catch((error) => {
       setHttpError(error.message);
     });
-  }, []);
+
+  }, [dispatch, setHttpError]);
 
   const mealsElement = meals.map((meal) => {
     const price = meal.price.toFixed(2);
@@ -47,6 +51,7 @@ const MealsList = (props) => {
     return (
       <MealItem
         id={meal.id}
+        key={meal.id}
         name={meal.name}
         price={price}
         amount={meal.amount}
@@ -57,7 +62,7 @@ const MealsList = (props) => {
     );
   });
 
-  if(httpError) {
+  if (httpError) {
     return httpError;
   }
 
