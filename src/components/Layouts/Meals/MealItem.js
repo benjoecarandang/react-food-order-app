@@ -1,14 +1,12 @@
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import CartContext from "../../../store/cart-context";
 import Card from "../../UI/Card";
 
 import { useDispatch } from "react-redux/es/exports";
 import { cartActions } from "../../../store/cart-slice";
 
 const MealItem = (props) => {
-  const cartCtx = useContext(CartContext);
   const dispatch = useDispatch();
 
   const onSubmitHandler = (event) => {
@@ -19,7 +17,7 @@ const MealItem = (props) => {
         item: {
           id: props.id,
           name: props.name,
-          amount: 1,
+          quantity: 1,
           price: props.price,
           imageSrc: props.imageSrc,
         },

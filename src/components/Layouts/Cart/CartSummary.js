@@ -1,4 +1,6 @@
-import React, { Fragment, useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import React, { Fragment } from "react";
 import tw, { styled } from "twin.macro";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
@@ -11,13 +13,13 @@ const CartSummary = (props) => {
   const cartElements = (
     <ul className="h-full flex flex-col">
       {cart.items.map((item) => {
-        const lineTotalAmount = (item.price * item.amount).toFixed(2);
+        const lineTotalAmount = (item.price * item.quantity).toFixed(2);
         return (
           <CartItem
             id={item.id}
             key={item.id}
             name={item.name}
-            amount={item.amount}
+            quantity={item.quantity}
             price={lineTotalAmount}
             imageSrc={item.imageSrc}
           />
@@ -32,7 +34,12 @@ const CartSummary = (props) => {
               <div className="text-lg font-bold">{totalAmount}</div>
             </Fragment>
           ) : (
-            <div className="text-xl font-semibold">No items in the cart!</div>
+            <div className="text-lg font-semibold text-center w-full">
+              <div>
+                <FontAwesomeIcon className="text-2xl" icon={faCartShopping}></FontAwesomeIcon>
+              </div>
+              Your cart is empty!
+            </div>
           )}
         </StyledTotalAmount>
       </li>

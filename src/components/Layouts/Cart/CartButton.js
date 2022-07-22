@@ -12,7 +12,7 @@ const CartButton = (props) => {
   const { items } = useSelector(state=>state.cart);
 
   const numberOfCartItems = items.reduce((curNumber, item) => {
-    return curNumber + item.amount;
+    return curNumber + item.quantity;
   }, 0);
 
   useEffect(() => {

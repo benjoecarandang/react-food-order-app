@@ -1,8 +1,43 @@
 import tw, { styled } from "twin.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { cartActions } from "../../../store/cart-slice";
+import { useDispatch } from "react-redux";
 
 const CartItem = (props) => {
+  const dispatch = useDispatch();
+
+  const addItemHandler = () => {
+    dispatch(
+      cartActions.addItem({
+        item: {
+          id: props.id,
+          name: props.name,
+          quantity: 1,
+          price: props.price,
+          imageSrc: props.imageSrc,
+        },
+        totalAmount: 1
+      })
+    );
+  };
+
+  const removeItemHandler = () => {
+    dispatch(
+      cartActions.decrement({
+        id: props.id,
+      })
+    );
+  };
+
+  const removeItemsHandler = () => {
+    dispatch(
+      cartActions.removeFromCart({
+        id: props.id,
+      })
+    );
+  };
+
   return (
     <StyledListItem>
       <StyledListItemChild className="max-w-[150px]">
@@ -11,22 +46,23 @@ const CartItem = (props) => {
 
       <StyledListItemChild2>
         <p className="font-medium text-gray-800">{props.name}</p>
-        <p className="font-light">{`Quantity: x${props.amount}`}</p>
+        <p className="font-light">{`Quantity: x${props.quantity}`}</p>
         <p className="mt-auto font-medium">{`PHP ${props.price}`}</p>
       </StyledListItemChild2>
 
       <StyledListItemChild>
         <FontAwesomeIcon
           icon={faTrash}
-          className="text-gray-400"
+          className="text-gray-400 hover:cursor-pointer"
+          onClick={removeItemsHandler}
         ></FontAwesomeIcon>
 
         <div className="flex gap-2">
-          <ButtonStyled onClick={props.onCartItemRemove}>
+          <ButtonStyled onClick={removeItemHandler}>
             <FontAwesomeIcon icon={faMinus}></FontAwesomeIcon>
           </ButtonStyled>
 
-          <ButtonStyled onClick={props.onCartItemAdd}>
+          <ButtonStyled onClick={addItemHandler}>
             <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
           </ButtonStyled>
         </div>
